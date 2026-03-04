@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sample LinkedIn Profiles — Accounting Career Paths</title>
+  <style>
+    /* Reset and base */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, sans-serif;
+      line-height: 1.6;
+      color: #1a1a1a;
+      background: #f8f8f8;
+    }
+
+    /* Skip link */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      background: #005fcc;
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      border-radius: 0 0 4px 4px;
+      z-index: 100;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .skip-link:focus {
+      top: 0;
+    }
+
+    /* Focus styles */
+    :focus-visible {
+      outline: 2px solid #005fcc;
+      outline-offset: 2px;
+    }
+
+    /* Visually hidden (screen reader only) */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* Header */
+    .site-header {
+      background: #0a2540;
+      color: #fff;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+    .site-header h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .site-header p {
+      font-size: 1.05rem;
+      color: #c8d6e5;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* Nav */
+    .profile-nav {
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .profile-nav ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.5rem;
+      justify-content: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .profile-nav a {
+      color: #005fcc;
+      text-decoration: underline;
+      font-weight: 500;
+      padding: 0.25rem 0;
+    }
+    .profile-nav a:hover,
+    .profile-nav a:focus-visible {
+      color: #003d8a;
+    }
+
+    /* Main content */
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* Intro */
+    .intro {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .intro h2 {
+      font-size: 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+    .intro ul {
+      margin-left: 1.25rem;
+      margin-top: 0.5rem;
+    }
+    .intro li {
+      margin-bottom: 0.25rem;
+    }
+
+    /* Profile sections */
+    .profile {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 2.5rem;
+      overflow: hidden;
+    }
+    .profile-header {
+      background: #eef3f8;
+      padding: 1.25rem 2rem;
+      border-bottom: 1px solid #ddd;
+    }
+    .profile-header h2 {
+      font-size: 1.4rem;
+      color: #0a2540;
+    }
+    .profile-header p {
+      color: #444;
+      margin-top: 0.25rem;
+    }
+    .profile-body {
+      padding: 1.5rem 2rem;
+    }
+
+    /* Screenshot figures */
+    figure {
+      margin: 1.5rem 0;
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    figcaption {
+      padding: 0.75rem 1rem;
+      background: #f5f5f5;
+      border-top: 1px solid #e0e0e0;
+      font-size: 0.9rem;
+      color: #333;
+    }
+    figcaption strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: #1a1a1a;
+    }
+
+    /* What to notice callout */
+    .notice {
+      background: #fffbe6;
+      border-left: 4px solid #c59b08;
+      padding: 1rem 1.25rem;
+      margin: 1.5rem 0;
+      border-radius: 0 4px 4px 0;
+    }
+    .notice-heading {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #7a5d00;
+      margin-bottom: 0.5rem;
+    }
+    .notice ul {
+      margin-left: 1.25rem;
+    }
+    .notice li {
+      margin-bottom: 0.25rem;
+    }
+
+    /* Section headings within profiles */
+    .profile-body h3 {
+      font-size: 1.1rem;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 1px solid #eee;
+      color: #0a2540;
+    }
+    .profile-body h3:first-child {
+      margin-top: 0;
+    }
+
+    /* Footer */
+    .site-footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      color: #666;
+      font-size: 0.85rem;
+      border-top: 1px solid #ddd;
+      background: #fff;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .site-header h1 { font-size: 1.35rem; }
+      .profile-header, .profile-body { padding: 1rem; }
+      figure { margin: 1rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header class="site-header">
+  <h1>Sample LinkedIn Profiles</h1>
+  <p>Four accounting professionals at different career stages and paths. Study what makes each profile effective, then apply those lessons to your own.</p>
+</header>
+
+<nav class="profile-nav" aria-label="Profile navigation">
+  <ul>
+    <li><a href="#perla">Perla Jaimes-Diaz, CPA</a></li>
+    <li><a href="#jessika">Jessika McGarvey</a></li>
+    <li><a href="#sam">Sam Oswald, CPA</a></li>
+    <li><a href="#jessica">Jessica McGrail</a></li>
+  </ul>
+</nav>
+
+<main id="main-content">
+
+  <section class="intro" aria-label="How to use this resource">
+    <h2>How to Use This Resource</h2>
+    <p>Each profile below includes real LinkedIn screenshots with detailed descriptions. As you study them, pay attention to:</p>
+    <ul>
+      <li>What does their headline communicate in one line?</li>
+      <li>How does their About section tell a story rather than list qualifications?</li>
+      <li>How does their Experience section show progression or depth?</li>
+      <li>Which profile feels most relevant to where you are now, and why?</li>
+    </ul>
+    <p style="margin-top: 0.75rem;">Every screenshot includes a text description below the image so you can study the profiles regardless of how well you can see the images.</p>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- PROFILE 1: PERLA JAIMES-DIAZ -->
+  <!-- ============================================================ -->
+  <article class="profile" id="perla">
+    <div class="profile-header">
+      <h2>Profile 1: Perla Jaimes-Diaz, CPA</h2>
+      <p>A CPA who moved between Big 4, entrepreneurship, and in-house accounting</p>
+    </div>
+    <div class="profile-body">
+
+      <h3>Header and About Section</h3>
+
+      <figure>
+        <img src="images/img_12.png" alt="Perla Jaimes-Diaz's LinkedIn header and About section. Her profile photo shows a professional headshot. Her headline reads 'CPA | Senior Accountant | Mental Health Advocate.' She is listed as 2nd-degree connection, uses She/Her pronouns, is in the Greater Chicago Area with 426 connections. Her current affiliations show MacLean-Fogg Company and Carthage College. Her About section reads: 'I'm a CPA with a background that blends Big 4 audit, entrepreneurship, and private accounting. I currently work as a Senior Accountant at a family office, managing personal wealth and investments. My experience ranges from auditing public companies at Deloitte to running my own restaurant — each chapter has shaped how I approach finance, leadership, and problem-solving. As a proud first-gen Latina, I care deeply about representation and bringing diverse perspectives to the table. Let's connect!'">
+        <figcaption>
+          <strong>Header and About section</strong>
+          Perla's headline packs three identities into one line: her credential (CPA), her role (Senior Accountant), and a personal value (Mental Health Advocate). Her About section is a narrative, not a list. She names specific career chapters — Deloitte audit, restaurant ownership, family office — and connects them into a story about how each shaped her approach. She closes with a personal identity statement as a first-gen Latina and an invitation to connect.
+        </figcaption>
+      </figure>
+
+      <h3>Experience</h3>
+
+      <figure>
+        <img src="images/img_10.png" alt="Perla's Experience section showing five positions in reverse chronological order. Senior Accountant at MacLean-Fogg Company, Full-time, November 2023 to Present (2 years 5 months), Mundelein, Illinois, Hybrid. Skills listed include Attention to Detail, Problem Solving, and 10 more. Restaurant Owner at El Rey del Pollo Asado, Self-employed, February 2019 to November 2023 (4 years 10 months), Round Lake Beach, Illinois, On-site. Restaurant Manager at El Rey del Pollo Asado, LLC, Full-time, August 2017 to February 2019 (1 year 7 months), Waukegan, Illinois, On-site. Skills include Teamwork, Attention to Detail, and 11 more. Senior Audit Assistant at Deloitte, August 2015 to July 2017 (2 years), Greater Milwaukee. Skills include Teamwork, Attention to Detail, and 23 more. Audit Intern at Deloitte, January 2014 to March 2014 (3 months), Greater Milwaukee.">
+        <figcaption>
+          <strong>Experience section</strong>
+          Perla's career path is nonlinear: she started as an audit intern at Deloitte, rose to Senior Audit Assistant, then left to run a restaurant for nearly five years before returning to corporate accounting. Her current role as Senior Accountant at MacLean-Fogg Company shows she successfully transitioned back. LinkedIn skills tags (Attention to Detail, Teamwork, Problem Solving) appear under multiple roles, showing consistency across very different jobs.
+        </figcaption>
+      </figure>
+
+      <h3>Licenses and Certifications</h3>
+
+      <figure>
+        <img src="images/img_04.png" alt="Perla's Licenses and Certifications section. Two entries: Certified Personal Finance Manager (CPFM), and Certified Public Accountant (CPA) from the State of Wisconsin, Department of Safety and Professional Services.">
+        <figcaption>
+          <strong>Licenses &amp; Certifications</strong>
+          Perla holds a CPA from Wisconsin and a Certified Personal Finance Manager (CPFM) credential. The CPA is the core license for her audit and accounting work; the CPFM reflects her current family office role managing personal wealth. She lists the issuing body (State of Wisconsin, Department of Safety and Professional Services), which adds credibility.
+        </figcaption>
+      </figure>
+
+      <h3>Skills</h3>
+
+      <figure>
+        <img src="images/img_09.png" alt="Perla's Skills section showing two highlighted skills. Accounting: 2 experiences at Deloitte, Certified Public Accountant (CPA), Passed LinkedIn Skill Assessment, with a link to show all 4 details. Financial Reporting: 2 experiences at Deloitte, Certified Public Accountant (CPA), Endorsed by 2 colleagues at Deloitte, with a link to show all 4 details. A button at the bottom reads 'Show all 28 skills.'">
+        <figcaption>
+          <strong>Skills section</strong>
+          Perla has 28 listed skills. The two shown — Accounting and Financial Reporting — are validated three ways each: by work experience at Deloitte, by her CPA credential, and by either a LinkedIn Skill Assessment or colleague endorsements. This layered validation makes the skills section more credible than a simple keyword list.
+        </figcaption>
+      </figure>
+
+      <div class="notice" role="note">
+        <p class="notice-heading">What to notice about Perla's profile</p>
+        <ul>
+          <li><strong>Headline strategy:</strong> She uses the pipe character (|) to separate three distinct signals: credential, role, and personal brand. A recruiter scanning search results gets all three without clicking in.</li>
+          <li><strong>Nonlinear career as a strength:</strong> Instead of hiding her restaurant years, she positions them as part of a coherent story about leadership and problem-solving. The About section explicitly connects the dots.</li>
+          <li><strong>About section as narrative:</strong> Three paragraphs, each with a purpose — current role and background, how experience connects, personal identity and call to action.</li>
+          <li><strong>Skills backed by evidence:</strong> Each skill links to experience entries, certifications, or assessment results rather than standing alone.</li>
+        </ul>
+      </div>
+
+      <h3>Experience (Detailed View)</h3>
+
+      <!-- Perla's experience list is fully captured in img_10 above. No additional detail screenshot exists. -->
+
+    </div>
+  </article>
+
+  <!-- ============================================================ -->
+  <!-- PROFILE 2: JESSIKA McGARVEY -->
+  <!-- ============================================================ -->
+  <article class="profile" id="jessika">
+    <div class="profile-header">
+      <h2>Profile 2: Jessika McGarvey</h2>
+      <p>A staff accountant who interned at one firm during college and converted to full-time</p>
+    </div>
+    <div class="profile-body">
+
+      <h3>Header</h3>
+
+      <figure>
+        <img src="images/img_15.png" alt="Jessika McGarvey's LinkedIn header section. Her profile photo is a professional headshot of a young woman in business attire. Her headline reads 'Staff Accountant at Mack and Associates, P.C.' She has a verified badge, is a 2nd-degree connection, located in the Greater Chicago Area with 74 connections. Affiliations shown on the right are Mack and Associates, P.C. and University of St. Francis.">
+        <figcaption>
+          <strong>Header section</strong>
+          Jessika's headline is straightforward: "Staff Accountant at Mack &amp; Associates, P.C." It names her exact role and employer. She has 74 connections — a realistic number for someone early in their career. Her profile photo is a professional headshot in business attire with a clean background. The affiliated employer and university are displayed on the right side of the header.
+        </figcaption>
+      </figure>
+
+      <h3>Experience and Education</h3>
+
+      <figure>
+        <img src="images/img_05.png" alt="Jessika McGarvey's Experience and Education sections. Experience shows two positions at the same firm: Staff Accountant at Mack and Associates, P.C., March 2024 to Present, and Accounting Intern at Mack and Associates, P.C., January 2024 to March 2024 (3 months), both in the Greater Chicago Area. Education section shows University of St. Francis, Bachelor of Science in Accounting with a minor in Forensic Accounting, 2020 to 2024.">
+        <figcaption>
+          <strong>Experience and Education</strong>
+          Jessika's career path shows the intern-to-full-time pipeline: she interned at Mack &amp; Associates for three months (January to March 2024), then converted to a Staff Accountant position at the same firm. Her education at the University of St. Francis shows a Bachelor of Science in Accounting with a minor in Forensic Accounting, completed 2020-2024. The progression from intern to staff at one employer tells a clear story of earning a permanent role.
+        </figcaption>
+      </figure>
+
+      <h3>Skills</h3>
+
+      <figure>
+        <img src="images/img_02.png" alt="Jessika McGarvey's Skills section showing five skills: Microsoft Office, Excel, Word, Leadership, and Accounting. The skills are listed without endorsement counts or validation badges, suggesting they were self-reported.">
+        <figcaption>
+          <strong>Skills section</strong>
+          Jessika lists five skills: Microsoft Office, Excel, Word, Leadership, and Accounting. These are self-reported without endorsement counts, which is typical for early-career professionals who haven't had time to build a large endorsement network. The skills lean toward software proficiency (Microsoft Office, Excel, Word) plus two broader skills (Leadership, Accounting).
+        </figcaption>
+      </figure>
+
+      <div class="notice" role="note">
+        <p class="notice-heading">What to notice about Jessika's profile</p>
+        <ul>
+          <li><strong>Intern-to-hire story:</strong> The two entries at the same firm show a clear progression. Recruiters recognize this pattern as a signal of reliability and competence — the firm hired her after seeing her work up close.</li>
+          <li><strong>Simple, honest headline:</strong> No buzzwords or aspirational claims. She states exactly what she does and where. For someone early in their career, clarity beats creativity.</li>
+          <li><strong>Room to grow:</strong> With 74 connections and five skills, there is obvious room to build out the profile. This is where you might be right now — and that is fine. Jessika's profile works because the information she does include is specific and accurate.</li>
+          <li><strong>Forensic Accounting minor:</strong> The minor signals a specialization interest that differentiates her from generic accounting graduates, even in the Education section.</li>
+        </ul>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ============================================================ -->
+  <!-- PROFILE 3: SAM OSWALD -->
+  <!-- ============================================================ -->
+  <article class="profile" id="sam">
+    <div class="profile-header">
+      <h2>Profile 3: Sam Oswald, CPA</h2>
+      <p>An audit senior associate on the CPA track at a large firm</p>
+    </div>
+    <div class="profile-body">
+
+      <h3>Header and About Section</h3>
+
+      <figure>
+        <img src="images/img_03.png" alt="Sam Oswald's LinkedIn header and About section. His profile photo shows a man in professional attire. His headline reads 'Audit Senior Associate at KPMG US.' He has a verified badge, is a 2nd-degree connection. His affiliations show KPMG US and W.P. Carey School of Business. His About section reads: 'I am a CPA and Audit Senior Associate at KPMG. I have experience in a variety of industries including technology, retail, real estate, and financial services. I am extremely passionate about the development and coaching of staff and interns. I enjoy networking and meeting new people, so please do not hesitate to reach out.' He lists his contact email as samuel.j.oswald@gmail.com.">
+        <figcaption>
+          <strong>Header and About section</strong>
+          Sam's headline is direct: "Audit Senior Associate at KPMG US." His About section opens with his credential and role, lists the industries he has worked in (technology, retail, real estate, financial services), then pivots to what he cares about — developing staff and interns. He closes with an explicit invitation to connect, including his personal email. The tone is professional but approachable.
+        </figcaption>
+      </figure>
+
+      <h3>Experience (Current and Recent Roles)</h3>
+
+      <figure>
+        <img src="images/img_17.png" alt="Sam Oswald's Experience section showing a grouped entry under KPMG US spanning 4 years 7 months, with four progressive roles: Audit Senior Associate in Nashville, Tennessee (October 2023 to Present, 2 years 6 months); Audit Senior Associate in San Francisco, California (July 2022 to October 2023, 1 year 4 months); Audit Associate in San Francisco (September 2021 to July 2022, 11 months); and Audit Intern at KPMG US in San Francisco (January 2021 to March 2021, 3 months). Below KPMG, a grouped University of San Diego entry spanning 3 years shows two roles: IT Student Technician (August 2017 to July 2020, 3 years) and Campus Tour Guide (August 2017 to May 2020, 2 years 10 months).">
+        <figcaption>
+          <strong>Experience — KPMG and university roles</strong>
+          Sam's KPMG progression is the textbook Big 4 pipeline: Audit Intern (3 months), Audit Associate (11 months), Audit Senior Associate in San Francisco (1 year 4 months), then Audit Senior Associate in Nashville (current, 2+ years). LinkedIn groups these under a single KPMG US entry showing 4 years 7 months total. Below that, his University of San Diego roles (IT Student Technician, Campus Tour Guide) show he was employed throughout college — relevant for students wondering what to include on a pre-career profile.
+        </figcaption>
+      </figure>
+
+      <h3>Experience (Earlier Roles)</h3>
+
+      <figure>
+        <img src="images/img_16.png" alt="The lower portion of Sam's Experience section showing earlier roles. Audit Intern at KPMG US in San Francisco (June 2019 to August 2019, 3 months). IRM Audit Intern at KPMG Ireland in County Dublin, Ireland (June 2019 to July 2019, 2 months). Internal Accountant at Rocky Mountain Dock and Door Specialties in Denver (May 2018 to August 2018, 4 months). Head Baseball Coach at J.K. Mullen High School in Denver (May 2016 to August 2017, 1 year 4 months). Security Officer at Argus Event Staffing, LLC in Denver (May 2016 to August 2017, 1 year 4 months).">
+        <figcaption>
+          <strong>Experience — earlier and pre-accounting roles</strong>
+          Sam's earlier experience reveals a broader story: two separate KPMG internships (US and Ireland) before his full-time offer, plus a summer internal accountant role at a small company. He also lists non-accounting jobs — Head Baseball Coach at a high school and Security Officer — from before he entered the profession. Keeping these shows a full employment history and demonstrates transferable skills (leadership, reliability) even from unrelated jobs.
+        </figcaption>
+      </figure>
+
+      <h3>Education</h3>
+
+      <figure>
+        <img src="images/img_06.png" alt="Sam Oswald's Education section showing six entries. W.P. Carey School of Business at Arizona State University: KPMG Master of Accounting with Data and Analytics Program, August 2020 to June 2021. University of San Diego, Knauss School of Business: Bachelor of Accountancy with Business Analytics Minor, January 2017 to May 2020. Auckland University of Technology: Medicinal Chemistry, 2018. University of San Diego Second Year Experience Program (no dates). Benedictine College: Accounting, August 2016 to December 2016, Activities include Gregorian Fellows and Benedictine College Baseball Team. Mullen High School: High School Diploma, August 2012 to May 2016.">
+        <figcaption>
+          <strong>Education section</strong>
+          Sam lists six education entries, telling a story of exploration before focus. He started at Benedictine College (Accounting, one semester, with baseball), transferred to University of San Diego (Bachelor of Accountancy, Business Analytics Minor), studied Medicinal Chemistry at Auckland University of Technology on what appears to be a study-abroad program, then completed a KPMG Master of Accounting at ASU's W.P. Carey School of Business. The KPMG-branded master's program signals a structured pipeline from education to firm employment.
+        </figcaption>
+      </figure>
+
+      <h3>Licenses and Certifications</h3>
+
+      <figure>
+        <img src="images/img_00.png" alt="Sam Oswald's Licenses and Certifications section showing four entries. Certified Public Accountant (CPA) from the Tennessee State Board of Accountancy, issued November 2023. Certified Public Accountant (CPA) from the California Board of Accountancy, issued January 2023. Alteryx Designer Core certification, issued April 2021. Microsoft Office Specialist: Excel certification from Microsoft, issued May 2018.">
+        <figcaption>
+          <strong>Licenses &amp; Certifications</strong>
+          Sam holds CPA licenses in two states — California (January 2023) and Tennessee (November 2023) — reflecting his geographic move from San Francisco to Nashville. He also lists an Alteryx Designer Core certification (a data analytics tool used in audit) and a Microsoft Office Specialist: Excel certification from early in his career. The dual-state CPA and analytics certification signal both mobility and technical depth.
+        </figcaption>
+      </figure>
+
+      <h3>Skills</h3>
+
+      <figure>
+        <img src="images/img_11.png" alt="Sam Oswald's Skills section showing two skills. U.S. Generally Accepted Accounting Principles (GAAP) is listed first. Microsoft Excel is listed second with endorsements from Alvin Hu and 2 others who are highly skilled, showing 4 total endorsements. A button at the bottom reads 'Show all 15 skills.'">
+        <figcaption>
+          <strong>Skills section</strong>
+          Sam has 15 listed skills. The two highlighted are U.S. GAAP and Microsoft Excel. Excel shows 4 endorsements from colleagues described as "highly skilled" in the area. Leading with GAAP as the top skill signals his core professional competency, while Excel shows the practical tool proficiency that audit work demands.
+        </figcaption>
+      </figure>
+
+      <div class="notice" role="note">
+        <p class="notice-heading">What to notice about Sam's profile</p>
+        <ul>
+          <li><strong>Clear progression:</strong> The grouped KPMG entry (Intern to Associate to Senior Associate) with dates and locations tells a recruiter exactly where he is in the pipeline. This is the single most important pattern for Big 4 profiles.</li>
+          <li><strong>Including non-accounting roles:</strong> Baseball coach, security officer, campus tour guide. These fill employment gaps and signal work ethic to anyone who reads that far.</li>
+          <li><strong>Multiple internships:</strong> Two KPMG internships (US and Ireland) plus a summer accounting role at a small company. He used multiple summers to build experience, not just one.</li>
+          <li><strong>CPA in two states:</strong> Shows mobility and commitment — he re-licensed when he moved from California to Tennessee rather than letting it lapse.</li>
+          <li><strong>About section with personality:</strong> "I am extremely passionate about the development and coaching of staff and interns" goes beyond listing qualifications. Including his email makes it easy to connect outside LinkedIn.</li>
+        </ul>
+      </div>
+
+    </div>
+  </article>
+
+  <!-- ============================================================ -->
+  <!-- PROFILE 4: JESSICA McGRAIL -->
+  <!-- ============================================================ -->
+  <article class="profile" id="jessica">
+    <div class="profile-header">
+      <h2>Profile 4: Jessica McGrail</h2>
+      <p>A bookkeeping firm owner who built a practice without a CPA</p>
+    </div>
+    <div class="profile-body">
+
+      <h3>Header</h3>
+
+      <figure>
+        <img src="images/img_08.png" alt="Jessica McGrail's LinkedIn header section. Her profile photo shows a woman wearing glasses in professional clothing against a neutral background. She has a verified badge. Her headline reads 'Owner, Dollar and Sense Bookkeeping Inc.' She is located in Batavia, Illinois, United States, with 500-plus connections. A mutual connection named Denice Gierach is shown. Affiliations on the right show Big Hearts of Fox Valley and University of Illinois at Chicago.">
+        <figcaption>
+          <strong>Header section</strong>
+          Jessica's headline leads with ownership: "Owner, Dollar and Sense Bookkeeping Inc." Unlike the other profiles that list a role at someone else's firm, hers signals that she built and runs her own business. With 500+ connections, she has a significantly larger network than the other profiles shown here. Her affiliations highlight both a community organization (Big Hearts of Fox Valley) and her university (UIC).
+        </figcaption>
+      </figure>
+
+      <h3>About Section</h3>
+
+      <figure>
+        <img src="images/img_14.png" alt="Jessica McGrail's About section. It reads: 'Our Mission: To help small businesses succeed and grow through their financial reports so that our communities can succeed and grow through their small businesses.'">
+        <figcaption>
+          <strong>About section</strong>
+          Jessica takes a completely different approach: instead of writing about herself, she leads with her company's mission statement. "To help small businesses succeed and grow through their financial reports so that our communities can succeed and grow through their small businesses." This positions her profile as a business presence, not a personal resume. For a business owner, the About section doubles as marketing.
+        </figcaption>
+      </figure>
+
+      <h3>Experience (Community and Board Roles)</h3>
+
+      <figure>
+        <img src="images/img_13.png" alt="Jessica McGrail's Experience section showing five positions. Board Treasurer at Big Hearts of Fox Valley, Part-time, January 2023 to Present (3 years 3 months). Board Treasurer at Fox Valley Entrepreneurship Center (FVEC), Part-time, January 2023 to Present (3 years 3 months). Board Treasurer at Batavia Chamber of Commerce, August 2018 to Present (7 years 8 months), Batavia, Illinois. Board Treasurer at Batavia Interfaith Food Pantry and Clothes Closet, Part-time, January 2018 to Present (8 years 3 months), On-site. Owner at Dollar and Sense Bookkeeping, August 2009 to Present (16 years 8 months), Batavia, IL, with a preview of services listed including QuickBooks Online Accounting Packages available and Administration Assistant Services.">
+        <figcaption>
+          <strong>Experience — Board Treasurer roles and firm ownership</strong>
+          Jessica lists four concurrent Board Treasurer positions at local organizations: Big Hearts of Fox Valley, Fox Valley Entrepreneurship Center, Batavia Chamber of Commerce, and Batavia Interfaith Food Pantry. These roles span 3 to 8 years each. Below them, her ownership of Dollar &amp; Sense Bookkeeping since August 2009 (16+ years) anchors her profile. The combination of multiple board roles and long-running firm ownership demonstrates deep community investment and sustained business operation.
+        </figcaption>
+      </figure>
+
+      <h3>Experience (Dollar &amp; Sense Bookkeeping Detail)</h3>
+
+      <figure>
+        <img src="images/img_07.png" alt="Detailed view of Jessica McGrail's Owner position at Dollar and Sense Bookkeeping, August 2009 to Present (16 years 8 months), Batavia, IL. An extensive list of services follows: QuickBooks Online Accounting Packages available, Administration Assistant Services, Accounts Payable and Receivables, Payroll Taxes, Certified Payroll and Prevailing Wage, State and Federal Quarterly and/or Annual Payroll Taxes, IDES Monthly Wage Reporting, W-2s, W-3, 1099s, 1096, New Hire Reporting, Sales Tax Reporting, AFLAC Pre and Post Tax Payroll Benefits, Bank and Credit Card Reconciliation, WC Insurance audits, COI maintenance of subcontractors, Bank Account Maintenance, Check Register, Chart of Accounts clean up and maintenance, Sales Tax Reporting, Data Entry and Daily Sales Reports, Cost Analysis and Financial Statement Preparation, Project Tracking and Job Costing, Vendors and Customers Continuous Maintenance. Additional experience with Contractor Clients includes Waiver of Liens, City/Village Contractor Registrations and Permits, I/J/L/E Forms, LPC-662 Soil Certification Forms. At the bottom, a section labeled Corporate Annual Reports begins.">
+        <figcaption>
+          <strong>Dollar &amp; Sense Bookkeeping — detailed service list</strong>
+          Jessica uses her Owner entry to list every service her firm provides, functioning as a service menu: payroll (certified payroll, prevailing wage, W-2s, 1099s), tax reporting (sales tax, quarterly/annual payroll taxes), bookkeeping (AP/AR, bank reconciliation, chart of accounts), financial analysis (cost analysis, financial statements, job costing), and specialized contractor services (waiver of liens, permit registrations, soil certification forms). This is unusual for a personal LinkedIn profile — she is using the Experience section as a marketing tool for her business.
+        </figcaption>
+      </figure>
+
+      <h3>Skills</h3>
+
+      <figure>
+        <img src="images/img_01.png" alt="Jessica McGrail's Skills section showing two skills with endorsement counts. Bookkeeping has 20 endorsements. Payroll has 23 endorsements. These are significantly higher endorsement numbers than the other profiles shown.">
+        <figcaption>
+          <strong>Skills section</strong>
+          Jessica's two highlighted skills — Bookkeeping (20 endorsements) and Payroll (23 endorsements) — have far more endorsements than any other profile in this resource. After 16 years of client relationships, she has built a large enough network that colleagues and clients actively endorse her core competencies. The endorsement volume itself is a credibility signal.
+        </figcaption>
+      </figure>
+
+      <div class="notice" role="note">
+        <p class="notice-heading">What to notice about Jessica's profile</p>
+        <ul>
+          <li><strong>Profile as marketing:</strong> Her About section is a mission statement. Her Experience section is a service list. Her entire profile is designed to attract clients, not recruiters. This is the right strategy for a business owner.</li>
+          <li><strong>No CPA, no problem:</strong> Jessica built a 16-year bookkeeping practice without a CPA license. Her credibility comes from longevity, community involvement, and the depth of services she can provide. Not every accounting career requires a CPA.</li>
+          <li><strong>Community as credential:</strong> Four Board Treasurer roles at local organizations serve double duty — they show civic engagement and demonstrate that organizations trust her with their finances.</li>
+          <li><strong>Endorsement volume:</strong> 20-23 endorsements per skill is far above average. This comes from years of building professional relationships, which is something you can start doing now.</li>
+          <li><strong>500+ connections:</strong> The largest network among these four profiles. For a local business owner, every connection is a potential client or referral source.</li>
+        </ul>
+      </div>
+
+    </div>
+  </article>
+
+</main>
+
+<footer class="site-footer">
+  <p>Resource prepared for career course use. All profile information reflects publicly available LinkedIn data.</p>
+</footer>
+
+</body>
+</html>
